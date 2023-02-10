@@ -8,9 +8,10 @@ const apiResponse = require('./helpers/apiResponses_helper')
 require("dotenv").config();
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
-// const uri = "mongodb+srv://comp1640:comp1640@comp1640.qcin5pl.mongodb.net/?retryWrites=true&w=majority";
-const uri = "mongodb://localhost:27017/admin";
+const uri = "mongodb+srv://comp1640:comp1640@comp1640.qcin5pl.mongodb.net/comp1640?retryWrites=true&w=majority";
+// const uri = "mongodb://localhost:27017/admin";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+mongoose.set('strictQuery',false)
 mongoose.connect(uri,{ useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 }).then(()=>{
   console.log("Database connect success!")
 }).catch ((err) =>{
@@ -24,5 +25,5 @@ app.use('/api/user/',usersRoute)
 app.all("*", function(req, res) {
 	return apiResponse.notFoundResponse(res, "Page not found");});
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT;
 app.listen(port, ()=> console.log(`Listening on port ${port}...`))
