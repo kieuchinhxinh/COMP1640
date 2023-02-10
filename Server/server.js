@@ -25,5 +25,5 @@ app.use('/api/user/',usersRoute)
 app.all("*", function(req, res) {
 	return apiResponse.notFoundResponse(res, "Page not found");});
 
-const port = process.env.PORT;
+const port = process.env.PORT || 8888;
 app.listen(port, ()=> console.log(`Listening on port ${port}...`))

@@ -49,13 +49,13 @@ exports.loginUser = async (req,res)=>{
                 id: user._id,
                 role: user.role,
             },
-            process.env.JWT_ACCESS_KEY,
+            "process.env.JWT_ACCESS_KEY",
             {expiresIn: "60m"});
             const refreshToken = jwt.sign({
                 id: user._id,
                 role: user.role,
             },
-            process.env.JWT_REFRESH_KEY,
+            "process.env.JWT_REFRESH_KEY",
             {expiresIn: "60m"});
             refreshTokens.push(refreshToken);
             res.cookie("refreshToken",refreshToken, {
@@ -86,13 +86,13 @@ exports.refreshToken = async (req,res) => {
                 id: user._id,
                 role: user.role,
             },
-            process.env.JWT_ACCESS_KEY,
+            "process.env.JWT_ACCESS_KEY",
             {expiresIn: "60m"});
             const newRefreshToken = jwt.sign({
                 id: user._id,
                 role: user.role,
             },
-            process.env.JWT_REFRESH_KEY,
+            "process.env.JWT_REFRESH_KEY",
             {expiresIn: "60m"});
 
             refreshTokens.push(refreshToken);
