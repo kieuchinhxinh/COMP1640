@@ -15,7 +15,7 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverA
 }).catch((err) => {
   console.error(err)
 })
-const whitelist = ['http://localhost:8888', 'http://143.42.74.14:8080']
+const whitelist = ['http://localhost:8888', 'http://143.42.74.14:8888']
 const corsOptions = {
   origin: whitelist
 }
