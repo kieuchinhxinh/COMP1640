@@ -2,21 +2,9 @@ const mongoose = require('mongoose')
 const Joi = require('joi')
 
 const Category = mongoose.model('Category', new mongoose.Schema({
-  id: {
-    type: Number,
-    required: true,
-    unique: true
-  },
-  name: {
-    type: String,
-    required: true,
-    maxlength: 30
-  },
-  create_at: {
-    type: Date,
-    default: Date.now
-  }
-}))
+  id: { type: Number, required: true, unique: true },
+  name: { type: String, required: true, maxlength: 30 }
+}, { timestamps: true }))
 
 function validateCategory (category) {
   const schema = Joi.object({

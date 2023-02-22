@@ -15,11 +15,14 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverA
 }).catch((err) => {
   console.error(err)
 })
-const whitelist = ['http://localhost:8888', 'http://143.42.74.14:8080']
-const corsOptions = {
-  origin: whitelist
-}
-app.use(cors(corsOptions))
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE')
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type')
+  res.setHeader('Access-Control-Allow-Credentials', true)
+  next()
+})
+app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/api/', route)
