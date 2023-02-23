@@ -8,7 +8,7 @@ const apiResponse = require('./src/api/helpers/api.response.helper')
 require('dotenv').config()
 
 const { ServerApiVersion } = require('mongodb')
-const uri = 'mongodb+srv://comp1640:comp1640@comp1640.qcin5pl.mongodb.net/comp1640?retryWrites=true&w=majority'
+const uri = 'mongodb+srv://comp1640:comp1640@comp1640.qcin5pl.mongodb.net/comp1640'
 mongoose.set('strictQuery', false)
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 }).then(() => {
   console.log('Database connect success!')

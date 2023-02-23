@@ -7,12 +7,11 @@ exports.verifyToken = (req, res, next) => {
   const token = req.header('Authorization')
   if (token) {
     const accessToken = token.split(' ')[1]
-    const result = jwt.verify(accessToken, process.env.JWT_REFRESH_KEY)
+    const result = jwt.verify(accessToken, '10')
     req.userId = result.id
     if (result) {
       next()
-    }
-    return apiResponse.response_status(res, Languages.TOKEN_NOT_VALID, 403)
+    } else { return apiResponse.response_status(res, Languages.TOKEN_NOT_VALID, 403) }
   } else {
     return apiResponse.response_status(res, Languages.NOT_AUTHENTICATED, 401)
   }
@@ -34,9 +33,9 @@ exports.isStaff = (req, res, next) => {
   const token = req.header('Authorization')
   if (token) {
     const accessToken = token.split(' ')[1]
-    const result = jwt.verify(accessToken, process.env.JWT_ACCESS_KEY)
+    const result = jwt.verify(accessToken, '10')
     req.userId = result.id
-    if (result.role === 2) {
+    if (result.role === 4) {
       next()
     } else { return apiResponse.response_status(res, Languages.TOKEN_NOT_VALID, 403) }
   } else {

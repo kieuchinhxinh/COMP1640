@@ -1,16 +1,17 @@
+const util = require('util')
 const multer = require('multer')
 const path = require('path')
-
+const listFile = []
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'upload/images')
+    cb(null, path.join(__dirname, '../../../upload/documents'))
   },
   filename: (req, file, cb) => {
-    cb(null, file.fieldname + '_' + Date.now() +
-    path.extname(file.originalname))
+    const filname = `${Date.now()}_${file.originalname}`
+    cb(null, filname)
+    listFile.push(filname)
   }
 })
-
 const fileFilter = (req, file, cb) => {
   const allowedMimes = [
     'image/jpeg',
@@ -29,9 +30,19 @@ const fileFilter = (req, file, cb) => {
 }
 
 const maxSize = 5 * 1024 * 1024
-
 const fileLimits = {
   fileSize: maxSize,
   files: 5
 }
-exports.upload = multer({ storage, fileFilter, limits: fileLimits }).array('file', 5)
+
+const upload = multer({ storage, fileFilter, limits: fileLimits }).array('files', 5)
+const uploadFilesMiddleware = util.promisify(upload)
+
+const uploadFiles = async (req, res, next) => {
+  await uploadFilesMiddleware(req, res)
+  if (listFile.length !== 0) {
+    req.listFile = listFile
+  } else { req.listFile = [] }
+  next()
+}
+module.exports = uploadFiles
