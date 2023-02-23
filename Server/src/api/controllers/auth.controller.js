@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken')
 const apiResponse = require('../helpers/api.response.helper')
 const Joi = require('joi')
 const Languages = require('../utils/languages')
+const bcrypt = require('bcrypt')
 const getNextSequenceValue = require('../utils/icrement.db')
 require('dotenv').config()
 
@@ -14,26 +15,30 @@ const schemaLoginUser = Joi.object({
 
 exports.registerUser = async (req, res) => {
   try {
+    const { username, email, password, department, role, lastName, firstName } = req.body
     const result = validate(req.body)
     if (result.error) {
       return apiResponse.response_status(res, result.error.message, 400)
     }
-    const user = await User.findOne({ email: req.body.email })
-    const username = await User.findOne({ username: req.body.username })
+    const user = await User.findOne({ email })
+    const usernameAcc = await User.findOne({ username })
     if (user) {
       return apiResponse.response_status(res, Languages.EMAIL_EXSITS, 400)
-    } else if (username) {
+    } else if (usernameAcc) {
       return apiResponse.response_status(res, Languages.USERNAME_EXSITS, 400)
     } else {
+      const salt = await bcrypt.genSalt(10)
+      const hashPassword = await bcrypt.hash(password, salt)
       const userId = await getNextSequenceValue('userId')
       const user = new User({
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password,
-        department: req.body.department,
-        role: req.body.role,
-        lastName: req.body.lastName,
-        firstName: req.body.firstName,
+        username,
+        email,
+        password: hashPassword,
+        department,
+        role,
+        lastName,
+        firstName,
+        fullName: firstName + ' ' + lastName,
         userId
       })
       await user.save()
@@ -52,19 +57,19 @@ exports.loginUser = async (req, res) => {
       return apiResponse.response_status(res, result.error.message, 400)
     }
     const user = await User.findOne({ email })
-
-    if (user && password === user.password) {
+    const resultPassword = await bcrypt.compare(password, user.password)
+    if (user && resultPassword) {
       const accessToken = jwt.sign({
-        id: user._id,
+        id: user.userId,
         role: user.role
       },
-      process.env.JWT_ACCESS_KEY,
-      { expiresIn: '60m' })
+      '10',
+      { expiresIn: '60d' })
       const refreshToken = jwt.sign({
         id: user._id,
         role: user.role
       },
-      process.env.JWT_REFRESH_KEY,
+      '11',
       { expiresIn: '60d' })
       refreshTokens.push(refreshToken)
       res.cookie('refreshToken', refreshToken, {
@@ -91,13 +96,13 @@ exports.refreshToken = async (req, res) => {
     } else {
       refreshTokens = refreshTokens.filter((token) => token !== refreshToken)
       const newAccessToken = jwt.sign({
-        id: user._id,
+        id: user.userId,
         role: user.role
       },
       process.env.JWT_ACCESS_KEY,
-      { expiresIn: '60m' })
+      { expiresIn: '60d' })
       const newRefreshToken = jwt.sign({
-        id: user._id,
+        id: user.userId,
         role: user.role
       },
       process.env.JWT_REFRESH_KEY,
