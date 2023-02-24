@@ -27,6 +27,7 @@ module.exports = {
   CATEGORY_EXSITS: 'Category is already exsits!',
   CATEGORY_SUCCESS: 'Category create successful!',
   CATEGORY_NOT_EXSITS: 'Category is not exsits!',
+  CATEGORY_EXPIRED: 'Category expired',
 
   // Idea
   CREATE_IDEA_SUCCESS: 'Idea create successful!'

@@ -1,10 +1,10 @@
 const util = require('util')
 const multer = require('multer')
 const path = require('path')
-const listFile = []
+let listFile = []
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '../../../upload/documents'))
+    cb(null, path.join(__dirname, '../../../upload'))
   },
   filename: (req, file, cb) => {
     const filname = `${Date.now()}_${file.originalname}`
@@ -39,6 +39,7 @@ const upload = multer({ storage, fileFilter, limits: fileLimits }).array('files'
 const uploadFilesMiddleware = util.promisify(upload)
 
 const uploadFiles = async (req, res, next) => {
+  listFile = []
   await uploadFilesMiddleware(req, res)
   if (listFile.length !== 0) {
     req.listFile = listFile

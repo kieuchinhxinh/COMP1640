@@ -5,7 +5,7 @@ const getNextSequenceValue = require('../utils/icrement.db')
 
 exports.createCategory = async (req, res) => {
   try {
-    const name = req.body.name
+    const { name, startDate, endDate } = req.body
     const result = validate(req.body)
     if (result.error) {
       return apiResponse.response_status(res, result.error.message, 400)
@@ -14,10 +14,15 @@ exports.createCategory = async (req, res) => {
     if (category) {
       return apiResponse.response_status(res, Languages.CATEGORY_EXSITS, 400)
     } else {
-      const id = await getNextSequenceValue('categoryId')
-      const newCategory = new Category({ id, name })
-      await newCategory.save()
-      return apiResponse.response_data(res, Languages.CATEGORY_SUCCESS, 200, newCategory)
+      const valueStartDate = new Date(startDate).getTime()
+      const valueEndDate = new Date(endDate).getTime()
+      const now = new Date().getTime()
+      if (valueStartDate > now && valueEndDate > valueStartDate) {
+        const id = await getNextSequenceValue('categoryId')
+        const newCategory = new Category({ id, name, startDate, endDate })
+        await newCategory.save()
+        return apiResponse.response_data(res, Languages.CATEGORY_SUCCESS, 200, newCategory)
+      }
     }
   } catch (error) {
     return apiResponse.response_error_500(res, error.message)

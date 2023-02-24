@@ -1,16 +1,17 @@
+const path = require('path')
 const mongoose = require('mongoose')
 const route = require('./src/api/routes/route')
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
+const db = require('./src/config/db.config')
 const cors = require('cors')
 const apiResponse = require('./src/api/helpers/api.response.helper')
 require('dotenv').config()
 
 const { ServerApiVersion } = require('mongodb')
-const uri = 'mongodb+srv://comp1640:comp1640@comp1640.qcin5pl.mongodb.net/comp1640'
 mongoose.set('strictQuery', false)
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 }).then(() => {
+mongoose.connect(db.uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 }).then(() => {
   console.log('Database connect success!')
 }).catch((err) => {
   console.error(err)
@@ -22,6 +23,7 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Credentials', true)
   next()
 })
+app.use('/upload', express.static(path.join(__dirname, 'upload')))
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))

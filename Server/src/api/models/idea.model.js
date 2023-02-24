@@ -6,7 +6,7 @@ const Ideas = mongoose.model('Ideas', new mongoose.Schema({
   title: { type: String, required: true, minlength: 3, maxlength: 150 },
   content: { type: String, required: true },
   anonymous: { type: Boolean, default: false },
-  file: { type: [String] },
+  file: { type: Number, default: 0, required: true },
   categoryId: { type: Number, required: true },
   userId: { type: Number, required: true }
 }, { timestamps: true }))
