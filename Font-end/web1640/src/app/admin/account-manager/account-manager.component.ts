@@ -52,7 +52,8 @@ export class AccountManagerComponent implements OnInit {
       });
 
 
-
+      
+      
 
       
 
@@ -70,6 +71,25 @@ export class AccountManagerComponent implements OnInit {
     //   }).subscribe(accounts => this.accounts = accounts);
     // });
   }
+
+
+  delete(id: string) {
+    confirm("Are you sure you want to delete this account?")
+    this.api.deleteUser(id).subscribe((data: any) => {
+      console.log(data)
+      var d = JSON.parse(data);
+      
+      alert("Delete Successful!")
+
+      window.location.reload();
+      
+    },
+    error => {
+      alert("Delete Failed!")
+    }
+    
+    );
+    }
 
   
   

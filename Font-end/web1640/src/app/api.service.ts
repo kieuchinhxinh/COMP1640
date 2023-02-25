@@ -102,4 +102,37 @@ export class ApiService {
       , {headers:httpOptions.headers, responseType: 'text', params: {page: page.toString(),
         limit: limit.toString()}})//stringify de chuyen doi tu object sang json
   }
+
+
+
+  deleteUser(id: string): Observable<any>{
+    let idTemp = id
+    console.log('Bearar ' + localStorage.getItem('accessToken'))
+
+    
+    
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearar ' + localStorage.getItem('accessToken'),
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+        'Accept': 'application/json'
+
+      })
+    };
+
+    console.log(httpOptions.headers)
+    
+    // const headers = new HttpHeaders();
+    // headers.append('Content-Type', 'multipart/form-data');
+    // headers.append('Accept', 'application/json');
+    // headers.append('Authorization', 'Baeare ' + localStorage.getItem('accessToken'));
+
+    // console.log(JSON.stringify(formData));
+    // const dataUser = JSON.stringify(formData)
+    
+    
+    return this.http.post(api + `user/delete/${idTemp}`, {headers:httpOptions.headers, responseType: 'text'})//stringify de chuyen doi tu object sang json
+  }
 }
