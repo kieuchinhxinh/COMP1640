@@ -73,8 +73,6 @@ export class ApiService {
     , {headers:headers, responseType: 'text'} //bao gui kieu json cho phia server va kieu du lieu tra ve tu server la json text
   ) 
   }//resetPassword
-
-
   getUsers(page: string, limit: string): Observable<any>{
     
     const httpOptions = {

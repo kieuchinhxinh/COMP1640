@@ -24,6 +24,8 @@ import { SuccessDialogComponentComponent } from './admin/create-account/success-
 import { QamComponent } from './qam/qam.component';
 import { TopicmanagerComponent } from './qam/topicmanager/topicmanager.component';
 import { SwitcherWrapperComponent } from './switcher-wrapper/switcher-wrapper.component';
+import { TopicAndDeadLineComponent } from './admin/topic-and-dead-line/topic-and-dead-line.component';
+import { TopicListComponent } from './admin/topic-list/topic-list.component';
 
 @NgModule({
   declarations: [
@@ -39,11 +41,13 @@ import { SwitcherWrapperComponent } from './switcher-wrapper/switcher-wrapper.co
     TesttemComponent,
     ResetPasswordComponent,
     AccountManagerComponent,
-    QamComponent
-   
+
+    QamComponent,
+    TopicmanagerComponent,
+    SwitcherWrapperComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule, FormsModule,
+    BrowserModule, HttpClientModule, FormsModule, 
     AppRoutingModule, ReactiveFormsModule, MatDialogModule
   ],
   providers: [
