@@ -50,38 +50,39 @@ exports.registerUser = async (req, res) => {
 }
 exports.loginUser = async (req, res) => {
   try {
-    const email = req.body.email
-    const password = req.body.password
+    const { email, password } = req.body
     const result = schemaLoginUser.validate(req.body)
     if (result.error) {
       return apiResponse.response_status(res, result.error.message, 400)
     }
     const user = await User.findOne({ email })
-    const resultPassword = await bcrypt.compare(password, user.password)
-    if (user && resultPassword) {
-      const accessToken = jwt.sign({
-        id: user.userId,
-        role: user.role
-      },
-      '10',
-      { expiresIn: '60d' })
-      const refreshToken = jwt.sign({
-        id: user._id,
-        role: user.role
-      },
-      '11',
-      { expiresIn: '60d' })
-      refreshTokens.push(refreshToken)
-      res.cookie('refreshToken', refreshToken, {
-        httpOnly: true,
-        secure: false,
-        path: '/',
-        sameSite: 'strict'
-      })
-      return apiResponse.response_token(res, Languages.SUCCESSFUL, accessToken, refreshToken)
-    } else {
-      return apiResponse.response_status(res, Languages.LOGIN_FAIL, 400)
-    }
+    if (user) {
+      const resultPassword = await bcrypt.compare(password, user.password)
+      if (resultPassword) {
+        const accessToken = jwt.sign({
+          id: user.userId,
+          role: user.role
+        },
+        '10',
+        { expiresIn: '60d' })
+        const refreshToken = jwt.sign({
+          id: user._id,
+          role: user.role
+        },
+        '11',
+        { expiresIn: '60d' })
+        refreshTokens.push(refreshToken)
+        res.cookie('refreshToken', refreshToken, {
+          httpOnly: true,
+          secure: false,
+          path: '/',
+          sameSite: 'strict'
+        })
+        return apiResponse.response_token(res, Languages.SUCCESSFUL, accessToken, refreshToken)
+      } else {
+        return apiResponse.response_status(res, Languages.LOGIN_FAIL, 400)
+      }
+    } else { return apiResponse.response_status(res, Languages.ACCOUNT_NOT_EXISTS, 400) }
   } catch (error) {
     return apiResponse.response_error_500(res, error.message)
   }
