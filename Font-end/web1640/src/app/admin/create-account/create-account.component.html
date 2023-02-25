@@ -32,73 +32,143 @@
                     <h4 class="text-center">Create New Account</h4>
                     <br>
 
-                    <form class="form-horizontal" [formGroup]="createAccountForm"
-                      (ngSubmit)="CreateNewAccount(createAccountForm.value)" novalidate>
-                      <div class="form-row">
-                        <div class="form-group col-md-6">
-                          <label>First Name</label>
-                          <input type="text" formControlName="FirstName" placeholder="Nguyen Van" class="form-control"
-                            required>
-                        </div>
-                        <div class="form-group col-md-6">
-                          <label>Last Name</label>
-                          <input type="text" formControlName="LastName" placeholder="A" class="form-control" required>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" placeholder="svetlana1997@example.com" formControlName="Email"
-                          class="form-control" required>
-                      </div>
-                      <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" class="form-control" placeholder="*******" formControlName="Password"
+                    <!-- <form class="form-horizontal" [formGroup]="createAccountForm"
+                      (ngSubmit)="CreateNewAccount(createAccountForm.value)" novalidate> -->
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label>First Name</label>
+                        <input type="text" formControlName="FirstName" placeholder="Nguyen Van" class="form-control"
                           required>
+                        <!-- <div class="text-danger text-center invalid-feedback d-block"
+                            *ngIf="!createAccountForm.controls.FirstName?.valid && (createAccountForm.controls.FirstName?.dirty || createAccountForm.controls.FirstName?.touched)">
+
+                            <span [hidden]="!createAccountForm.controls.FirstName.errors?.['required']">
+                              FirstName is required!
+                            </span>
+                            <span [hidden]="!createAccountForm.controls.FirstName.errors?.['minlength']">
+                              FirstName must be at least 6 characters long!
+                            </span>
+                          </div> -->
                       </div>
-                      <div class="form-row">
-                        <div class="form-group col-md-6">
-                          <label>Role</label>
+                      <div class="form-group col-md-6">
+                        <label>Last Name</label>
+                        <input type="text" formControlName="Email" placeholder="A" class="form-control" required>
+                        <!-- <div class="text-danger text-center invalid-feedback d-block"
+                            *ngIf="!createAccountForm.controls.LastName?.valid && (createAccountForm.controls.LastName?.dirty || createAccountForm.controls.LastName?.touched)">
+
+                            <span [hidden]="!createAccountForm.controls.LastName.errors?.['required']">
+                              Last Name is required!
+                            </span>
+                            <span [hidden]="!createAccountForm.controls.LastName.errors?.['minlength']">
+                              Last Name must be at least 6 characters long!
+                            </span>
+                          </div> -->
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Email</label>
+                      <input type="email" placeholder="svetlana1997@example.com" formControlName="Email"
+                        class="form-control" required>
+                      <!-- <div class="text-danger text-center invalid-feedback d-block"
+                            *ngIf="!createAccountForm.controls.Email?.valid && (createAccountForm.controls.Email?.dirty || createAccountForm.controls.Email?.touched)">
+
+                            <span [hidden]="!createAccountForm.controls.Email.errors?.['required']">
+                              Email is required!
+                            </span>
+                            <span [hidden]="!createAccountForm.controls.Email.errors?.['minlength']">
+                              Email must be at least 6 characters long!
+                            </span>
+                          </div> -->
+                    </div>
+                    <div class="form-group">
+                      <label>Password</label>
+                      <input type="password" class="form-control" placeholder="*******" formControlName="Password"
+                        required>
+                      <!-- <div class="text-danger text-center invalid-feedback d-block"
+                            *ngIf="!createAccountForm.controls.Password?.valid && (createAccountForm.controls.Password?.dirty || createAccountForm.controls.Password?.touched)">
+
+                            <span [hidden]="!createAccountForm.controls.Password.errors?.['required']">
+                              Password is required!
+                            </span>
+                            <span [hidden]="!createAccountForm.controls.Password.errors?.['minlength']">
+                              Password must be at least 6 characters long!
+                            </span>
+                          </div> -->
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label>Role</label>
 
 
-                          <select class="form-select text-center" formControlName="Role" required>
+                        <select class="form-select text-center" formControlName="Role" required>
 
-                            <option *ngFor="let opt of ngOptionRole" [value]="opt">
-                              {{opt}}
-                            </option>
+                          <option *ngFor="let opt of ngOptionRole" [value]="opt">
+                            {{opt}}
+                          </option>
 
-                          </select>
+                        </select>
+                        <!-- <div class="text-danger text-center invalid-feedback d-block"
+                            *ngIf="!createAccountForm.controls.Role?.valid && (createAccountForm.controls.Role?.dirty || createAccountForm.controls.Role?.touched)">
+
+                            <span [hidden]="!createAccountForm.controls.Role.errors?.['required']">
+                              Role is required!
+                            </span>
+                            <span [hidden]="!createAccountForm.controls.Role.errors?.['minlength']">
+                              Role must be at least 6 characters long!
+                            </span>
+                          </div> -->
 
 
-                        </div>
-
-                        <div class="form-group col-md-6">
-                          <label>Department</label>
-                          <input type="text" formControlName="Department" class="form-control" required>
-                        </div>
                       </div>
 
+                      <div class="form-group col-md-6">
+                        <label>Department</label>
+                        <input type="text" formControlName="Department" class="form-control" required>
+                        <!-- <div class="text-danger text-center invalid-feedback d-block"
+                            *ngIf="!createAccountForm.controls.Department?.valid && (createAccountForm.controls.Department?.dirty || createAccountForm.controls.Department?.touched)">
 
-
-
-                      <div class=" col-sm-12 form-group text-center align-content-center">
-                        <label>Image</label>
-                        <input type="file" class="form-control" formControlName="Image">
-
+                            <span [hidden]="!createAccountForm.controls.Department.errors?.['required']">
+                              Department is required!
+                            </span>
+                            <span [hidden]="!createAccountForm.controls.Department.errors?.['minlength']">
+                              Department must be at least 6 characters long!
+                            </span>
+                          </div> -->
                       </div>
-
-                      <div class="checkbox">
-                        <label>
-                            <input type="checkbox" required> Agree the terms and policy
-                        </label>
                     </div>
 
-                      <div class="col-sm-12 form-group text-center align-content-center">
-                        <br>
-                        <button class="btn btn-lg btn-info" type="submit"
-                        [disabled]="!createAccountForm.valid">Create Now
-                        </button>
-                      </div>
-                      </form>
+
+
+
+                    <div class=" col-sm-12 form-group text-center align-content-center">
+                      <label>Image</label>
+                      <input type="file" class="form-control" formControlName="Image">
+                      <!-- <div class="text-danger text-center invalid-feedback d-block"
+                        *ngIf="!createAccountForm.controls.Image?.valid && (createAccountForm.controls.Image?.dirty || createAccountForm.controls.Image?.touched)">
+
+                        <span [hidden]="!createAccountForm.controls.Image.errors?.['required']">
+                          Image is required!
+                        </span>
+                        <span [hidden]="!createAccountForm.controls.Image.errors?.['minlength']">
+                          Image must be at least 6 characters long!
+                        </span>
+                      </div> -->
+
+                    </div>
+
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" required> Agree the terms and policy
+                      </label>
+                    </div>
+
+                    <div class="col-sm-12 form-group text-center align-content-center">
+                      <br>
+                      <button class="btn btn-lg btn-info" type="submit" [disabled]="!createAccountForm.valid">Create
+                        Now
+                      </button>
+                    </div>
+                    <!-- </form> -->
 
 
 

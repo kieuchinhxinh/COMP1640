@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -20,7 +20,7 @@ interface NewAccounts {
   Email: string | null,
   Password: string | null,
   Role: string | null,
-  Departmant: string | null,
+  Department: string | null,
 
 
 }
@@ -36,6 +36,17 @@ export class CreateAccountComponent implements OnInit {
     FileImage: null,
   };
 
+  createAccountForm = new FormGroup({
+    FileImage: new FormControl('', [Validators.required]),
+    Firstname: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    Lastname: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    Email: new FormControl('', [Validators.required, Validators.minLength(9), Validators.email]),
+    Password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    Role: new FormControl('', [Validators.required]),
+    Department: new FormControl('', [Validators.required, Validators.minLength(10)]),
+    
+  })
+
 
   newAccount: NewAccounts = {
     Firstname: null,
@@ -43,7 +54,7 @@ export class CreateAccountComponent implements OnInit {
     Email: null,
     Password: null,
     Role: null,
-    Departmant: null,
+    Department: null,
 
 
 
@@ -64,32 +75,22 @@ export class CreateAccountComponent implements OnInit {
     // this.newAccountForm.reset();
 
   }
-  createAccountForm = new FormGroup({
-    FileImage: new FormControl(''),
-    Firstname: new FormControl(''),
-    Lastname: new FormControl(''),
-    Email: new FormControl(''),
-    Password: new FormControl(''),
-    Role: new FormControl(''),
-    Departmant: new FormControl(''),
+  
 
-
-  })
-
-  createNewAccount = new FormGroup({
-    FileImage: new FormControl(''),
-    Firstname: new FormControl(''),
-    Lastname: new FormControl(''),
-    Email: new FormControl(''),
-    Password: new FormControl(''),
-    Role: new FormControl(''),
-    Departmant: new FormControl(''),
+  // createNewAccount = new FormGroup({
+  //   FileImage: new FormControl(''),
+  //   Firstname: new FormControl(''),
+  //   Lastname: new FormControl(''),
+  //   Email: new FormControl(''),
+  //   Password: new FormControl(''),
+  //   Role: new FormControl(''),
+  //   Department: new FormControl(''),
 
 
 
 
-  }
-  )
+  // }
+  // )
   CreateNewAccount(data: any) {
     //get password from localstorage
     var account: any = localStorage.getItem('account');
@@ -103,7 +104,7 @@ export class CreateAccountComponent implements OnInit {
       Email: data.Email,
       Password: data.Password,
       Role: data.Role,
-      Departmant: data.Departmant,
+      Department: data.Department,
       
     }
 
@@ -165,10 +166,21 @@ export class CreateAccountComponent implements OnInit {
     Email: null,
     Password: null,
     Role: null,
-    Departmant: null,
+    Department: null,
 
 
   };
+  // createAccountForm = new FormGroup({
+  //   FileImage: new FormControl(''),
+  //   Firstname: new FormControl(''),
+  //   Lastname: new FormControl(''),
+  //   Email: new FormControl(''),
+  //   Password: new FormControl(''),
+  //   Role: new FormControl(''),
+  //   Department: new FormControl(''),
+
+
+  // })
 
   reloadParent() {
     this.ngOnInit();

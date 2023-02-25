@@ -21,6 +21,8 @@ import { ApiService } from './api.service';
 import { QamComponent } from './qam/qam.component';
 import { TopicmanagerComponent } from './qam/topicmanager/topicmanager.component';
 import { SwitcherWrapperComponent } from './switcher-wrapper/switcher-wrapper.component';
+import { TopicAndDeadLineComponent } from './admin/topic-and-dead-line/topic-and-dead-line.component';
+import { TopicListComponent } from './admin/topic-list/topic-list.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { SwitcherWrapperComponent } from './switcher-wrapper/switcher-wrapper.co
     AccountManagerComponent,
     QamComponent,
     TopicmanagerComponent,
-    SwitcherWrapperComponent
+    SwitcherWrapperComponent,
+    TopicAndDeadLineComponent,
+    TopicListComponent
    
   ],
   imports: [

@@ -45,7 +45,7 @@ export class ApiService {
   createNewAccount(account: Object){    
     const userInfo = {account: account}
     const headers = new HttpHeaders().set('Content-Type', 'application/json') ;
-    return this.http.post(api + 'createNewStudent', userInfo, {headers:headers, responseType: 'text'})//stringify de chuyen doi tu object sang json
+    return this.http.post(api + 'createNewAccount', userInfo, {headers:headers, responseType: 'text'})//stringify de chuyen doi tu object sang json
   }
   resetPassword(newPassword:string='', reNewPassword:string=''): Observable<any>{
     var account: any = localStorage.getItem('account')
@@ -59,4 +59,9 @@ export class ApiService {
     , {headers:headers, responseType: 'text'} //bao gui kieu json cho phia server va kieu du lieu tra ve tu server la json text
   ) 
   }//resetPassword
+  CreateDeadline(deadline: Object){    
+    const userInfo = {deadline: deadline}
+    const headers = new HttpHeaders().set('Content-Type', 'application/json') ;
+    return this.http.post(api + 'createDeadline', userInfo, {headers:headers, responseType: 'text'})//stringify de chuyen doi tu object sang json
+  }
 }
