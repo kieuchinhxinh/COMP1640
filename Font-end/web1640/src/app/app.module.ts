@@ -26,6 +26,9 @@ import { TopicmanagerComponent } from './qam/topicmanager/topicmanager.component
 import { SwitcherWrapperComponent } from './switcher-wrapper/switcher-wrapper.component';
 import { TopicAndDeadLineComponent } from './admin/topic-and-dead-line/topic-and-dead-line.component';
 import { TopicListComponent } from './admin/topic-list/topic-list.component';
+import { ModalModule } from 'ngx-bootstrap/modal'; 
+
+
 
 @NgModule({
   declarations: [
@@ -41,13 +44,12 @@ import { TopicListComponent } from './admin/topic-list/topic-list.component';
     TesttemComponent,
     ResetPasswordComponent,
     AccountManagerComponent,
-
     QamComponent,
     TopicmanagerComponent,
     SwitcherWrapperComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule, FormsModule, 
+    BrowserModule, HttpClientModule, FormsModule,
     AppRoutingModule, ReactiveFormsModule, MatDialogModule
   ],
   providers: [

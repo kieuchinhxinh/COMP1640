@@ -36,10 +36,12 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
  npm -v
  node -v
  npm install -g @angular/cli
+ npm install -g json-server
 
 - clone về
-Chạy trong terminal của project: npm update 
-
+Chạy trong terminal của project: 
+        npm update 
+        npm install ngx-bootstrap --save
 
 - start server bằng câu lệnh: 
       vào Font-end -> web1640 -> src -> app -> mở terminal của app -> chạy câu lệnh: ng serve -o
