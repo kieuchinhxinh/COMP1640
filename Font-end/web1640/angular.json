@@ -25,30 +25,19 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-             
-              
-             
-             
               "src/assets/syndashadmin-10/main-files/vertical/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css",
-            
               "src/assets/syndashadmin-10/main-files/vertical/assets/plugins/simplebar/css/simplebar.css",
               "src/assets/syndashadmin-10/main-files/vertical/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css",
               "src/assets/syndashadmin-10/main-files/vertical/assets/plugins/metismenu/css/metisMenu.min.css",
-             
               "src/assets/syndashadmin-10/main-files/vertical/assets/css/pace.min.css",
-             
-             
-             "src/assets/syndashadmin-10/main-files/vertical/assets/css/bootstrap.min.css",
-              
-             "src/assets/syndashadmin-10/main-files/vertical/assets/css/icons.css",
-             
-             "src/assets/syndashadmin-10/main-files/vertical/assets/css/app.css",
-             "src/assets/syndashadmin-10/main-files/vertical/assets/css/dark-sidebar.css",
-             "src/assets/syndashadmin-10/main-files/vertical/assets/css/dark-theme.css"
-
-
+              "src/assets/syndashadmin-10/main-files/vertical/assets/css/bootstrap.min.css",
+              "src/assets/syndashadmin-10/main-files/vertical/assets/css/icons.css",
+              "src/assets/syndashadmin-10/main-files/vertical/assets/css/app.css",
+              "src/assets/syndashadmin-10/main-files/vertical/assets/css/dark-sidebar.css",
+              "src/assets/syndashadmin-10/main-files/vertical/assets/css/dark-theme.css"
             ],
             "scripts": [
 
@@ -139,6 +128,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -146,5 +136,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
