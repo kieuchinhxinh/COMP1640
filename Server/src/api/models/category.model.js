@@ -14,7 +14,7 @@ const Category = mongoose.model('Category', new mongoose.Schema({
 
 function validateCategory (category) {
   const schema = Joi.object({
-    name: Joi.string().max(100).required(),
+    name: Joi.string().max(100),
     startDate: Joi.string().regex(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/),
     endDate: Joi.string().regex(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/)
   })
