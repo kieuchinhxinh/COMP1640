@@ -27,6 +27,9 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 
+
+
+
 ## Run code
 - Cài nodejs về nếu chưa có
 - Mở cmd
@@ -37,7 +40,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - clone về
 Chạy trong terminal của project: npm update 
 
-- start server bằng câu lệnh: ng serve -o
+
+- start server bằng câu lệnh: 
+      vào Font-end -> web1640 -> src -> app -> mở terminal của app -> chạy câu lệnh: ng serve -o
+
+
 
 - Tạo mới các file component: mở terminal ở mục muốn tạo file -> ng g c tenComponentMoi
 
