@@ -21,6 +21,9 @@ import { ApiService } from './api.service';
 import { CreateAccountComponent } from './admin/create-account/create-account.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SuccessDialogComponentComponent } from './admin/create-account/success-dialog-component/success-dialog-component.component';
+import { QamComponent } from './qam/qam.component';
+import { TopicmanagerComponent } from './qam/topicmanager/topicmanager.component';
+import { SwitcherWrapperComponent } from './switcher-wrapper/switcher-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,6 @@ import { SuccessDialogComponentComponent } from './admin/create-account/success-
     TesttemComponent,
     ResetPasswordComponent,
     AccountManagerComponent,
-    SuccessDialogComponentComponent,
    
   ],
   imports: [
