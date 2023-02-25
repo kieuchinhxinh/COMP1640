@@ -18,6 +18,9 @@ import { TesttemComponent } from './testtem/testtem.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { AccountManagerComponent } from './admin/account-manager/account-manager.component';
 import { ApiService } from './api.service';
+import { QamComponent } from './qam/qam.component';
+import { TopicmanagerComponent } from './qam/topicmanager/topicmanager.component';
+import { SwitcherWrapperComponent } from './switcher-wrapper/switcher-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,9 @@ import { ApiService } from './api.service';
     TesttemComponent,
     ResetPasswordComponent,
     AccountManagerComponent,
+    QamComponent,
+    TopicmanagerComponent,
+    SwitcherWrapperComponent
    
   ],
   imports: [

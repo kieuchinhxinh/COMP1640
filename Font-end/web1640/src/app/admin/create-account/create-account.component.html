@@ -94,7 +94,8 @@
 
                       <div class="col-sm-12 form-group text-center align-content-center">
                         <br>
-                        <button class="btn btn-lg btn-info" type="submit">Create Now
+                        <button class="btn btn-lg btn-info" type="submit"
+                        [disabled]="!createAccountForm.valid">Create Now
                         </button>
                       </div>
                       </form>

@@ -4,6 +4,8 @@ import { AccountManagerComponent } from './admin/account-manager/account-manager
 import { AdminComponent } from './admin/admin.component';
 import { CreateAccountComponent } from './admin/create-account/create-account.component';
 import { LoginComponent } from './login/login.component';
+import { QamComponent } from './qam/qam.component';
+import { TopicmanagerComponent } from './qam/topicmanager/topicmanager.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { StaffComponent } from './staff/staff.component';
 import { TesttemComponent } from './testtem/testtem.component';
@@ -12,6 +14,10 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'testtem', component: TesttemComponent },
+  {path: 'qam', component: QamComponent,
+    children: [
+      { path: 'topicmanager', component: TopicmanagerComponent }
+    ]},
   { path: 'resetpassword', component: ResetPasswordComponent},
   { path: 'admin', component: AdminComponent,
     children: [
