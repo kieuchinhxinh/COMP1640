@@ -39,6 +39,7 @@ import { SwitcherWrapperComponent } from './switcher-wrapper/switcher-wrapper.co
     TesttemComponent,
     ResetPasswordComponent,
     AccountManagerComponent,
+    QamComponent
    
   ],
   imports: [

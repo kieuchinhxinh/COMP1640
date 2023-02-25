@@ -12,7 +12,7 @@
     <div class="card-body p-0">
         <div class="table-responsive">
             <table class="table mb-0">
-                
+
                 <thead>
                     <tr>
                         <th>No.</th>
@@ -22,29 +22,29 @@
                         <th>Role</th>
                         <th>Department</th>
                         <th>Action</th>
-                       
+
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
+                    <tr *ngFor="let account of accounts">
+                        <td>{{account.userId}}</td>
                         <td>
                             <div class="product-img bg-transparent border">
-                                <img src="assets/images/icons/smartphone.png" width="35" alt="">
+                                <img src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png" width="35" alt="">
                             </div>
                         </td>
-                        <td>Nguyen Xuan Quyen</td>
-                        <td>Quyenbeo@gmail.com</td>
-                        <td>admin</td>
-                        <td>accountant</td>
+                        <td>{{account.username}}</td>
+                        <td>{{account.email}}</td>
+                        <td>{{account.role}}</td>
+                        <td>{{account.department}}</td>
                         <td>
                             <button type="button" class="btn btn-info radius-15 me-3 ">Edit</button>
 
                             <button type="button" class="btn btn-danger radius-15">Delete</button>
                         </td>
-                        
+
                     </tr>
-                    
+
                 </tbody>
             </table>
         </div>
