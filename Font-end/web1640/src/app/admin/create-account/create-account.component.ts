@@ -8,24 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { SuccessDialogComponentComponent } from './success-dialog-component/success-dialog-component.component';
 
 
-interface Images {
 
-  FileImage: string | null,
-
-}
-
-
-interface NewAccounts {
-
-  Firstname: string | null,
-  Lastname: string | null,
-  Email: string | null,
-  Password: string | null,
-  Role: string | null,
-  Departmant: string | null,
-
-
-}
 
 @Component({
   templateUrl: './create-account.component.html',
@@ -33,96 +16,87 @@ interface NewAccounts {
 })
 export class CreateAccountComponent implements OnInit {
 
-  myForm!: FormGroup;
+ 
+  ngDepartment = ["IT", "HR", "Marketing", "Sales", "Finance", "Admin"];
+  ngOptionrole = ["Admin", "QMA", "ABC", "Staff"];
+  public aElement?: boolean = true;
 
-  ngOptionRole = ["Admin", "QMA", "Staff"];
-  images: Images = {
-    FileImage: null,
-  };
+ 
+  onclick() {
+    this.aElement = !this.aElement;
+    
+   
+  }
 
-
-  newAccount: NewAccounts = {
-    Firstname: null,
-    Lastname: null,
-    Email: null,
-    Password: null,
-    Role: null,
-    Departmant: null,
-
-
-
-  };
+  
 
   constructor(
     private http: HttpClient,
     private api: ApiService,
     private router: Router,
-    private fb: FormBuilder,
+    // private fb: FormBuilder,
     private dialog: MatDialog) {
 
   } //dependency injection
 
-
-
-  ngOnInit() {
-
-    this.myForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      username: ['', Validators.required],
-      email: ['', [Validators.required, Validators.minLength(9), Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      role: ['', Validators.required],
-      department: ['', Validators.required],
-      
-    });
-
-    // this.newaccount();
-    // this.newAccountForm.reset();
-
-  }
   createAccountForm = new FormGroup({
-    FileImage: new FormControl(''),
-    Firstname: new FormControl(''),
-    Lastname: new FormControl(''),
-    Email: new FormControl(''),
-    Password: new FormControl(''),
-    Role: new FormControl(''),
-    Departmant: new FormControl(''),
+    image: new FormControl('', [Validators.required]),
+    firstName: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    username: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    email: new FormControl('', [Validators.required, Validators.email, Validators.minLength(9)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    role: new FormControl('', [Validators.required]),
+    department: new FormControl('', [Validators.required])})
 
+  ngOnInit(): void {
+    // this.newAccount();
 
-  })
-
-  createNewAccount = new FormGroup({
-    FileImage: new FormControl(''),
-    Firstname: new FormControl(''),
-    Lastname: new FormControl(''),
-    Email: new FormControl(''),
-    Password: new FormControl(''),
-    Role: new FormControl(''),
-    Departmant: new FormControl(''),
-
-
-
-
+    
+      
+      
+    
   }
-  )
+
+  
+  // createAccountForm = new FormGroup({
+  //   image: new FormControl(''),
+  //   firstName: new FormControl(''),
+  //   lastName: new FormControl(''),
+  //   username: new FormControl(''),
+  //   email: new FormControl(''),
+  //   password: new FormControl(''),
+  //   role: new FormControl(''),
+  //   department: new FormControl(''),
+  // }
+  // )
+ 
+
   CreateNewAccount(data: any) {
     //get password from localstorage
-    var account: any = localStorage.getItem('account');
-    var phone = JSON.parse(account).Phone;
-    console.log("dsadsds" + phone);
+    var formData: any = new FormData();
+    
+    formData.append('firstName', this.createAccountForm.get('firstName')!.value?.toString());
+    formData.append('lastName', this.createAccountForm.get('lastName')!.value);
+    formData.append('username', this.createAccountForm.get('username')!.value);
+    formData.append('email', this.createAccountForm.get('email')!.value);
+    formData.append('role', this.createAccountForm.get('role')!.value);
+    formData.append('password', this.createAccountForm.get('password')!.value);
+    formData.append('department', this.createAccountForm.get('department')!.value);
 
-    this.account = {
+
+    
+    // this. = {
       
-      Firstname: data.Firstname,
-      Lastname: data.Lastname,
-      Email: data.Email,
-      Password: data.Password,
-      Role: data.Role,
-      Departmant: data.Departmant,
+    //   firstName: data.firstName,
+    //   lastName: data.lastName,
+    //   username: data.username,
+    //   email: data.email,
+    //   password: data.password,
+    //   role: data.role,
+    //   department: data.department,
       
-    }
+    // }
 
 
 
@@ -132,33 +106,41 @@ export class CreateAccountComponent implements OnInit {
     //     return false;
     // } 
     // truyen du lieu vao form
-    // console.log(data.phone, data.password);
+    // console.log(data.email, data.password);
     // this.router.navigateByUrl('/students');
 
     // return true;
     // console.log(
-    //  this.resetPasswordForm.value);
-    // if (this.resetPasswordForm.value.oldPassword != oldPw) {
+    //  this.resetpasswordForm.value);
+    // if (this.resetpasswordForm.value.oldpassword != oldPw) {
 
     //   alert("Mật khẩu cũ không đúng");
     //   return false;
     // }
-    // else if (this.resetPasswordForm.value.newPassword != this.resetPasswordForm.value.reNewPassword) {
+    // else if (this.resetpasswordForm.value.newpassword != this.resetpasswordForm.value.reNewpassword) {
     //   alert("Mật khẩu mới không trùng khớp");
     //   return false;
     // }
     // else {
     // console.log("hii");
 
-    var formData = new FormData();
-    formData = this.myForm.getRawValue()
-    console.log(formData)
-    // formData.append('firstname', this.myForm?.get('FirstName')?.value);
-    // formData.append('lastname', this.myForm?.get('LastName')?.value);
-    // formData.append('username', this.myForm?.get('UserName')?.value);
-    // formData.append('email', this.myForm?.get('Email')?.value);
-    // formData.append('role', this.myForm?.get('Role')?.value);
-    // formData.append('password', this.myForm?.get('Password')?.value);
+    // var formData = new FormData();
+    // formData.append('image', this.createAccountForm.controls.image.value!);
+    // formData.append('firstName', this.createAccountForm.controls.firstName.value!);
+    // formData.append('lastName', this.createAccountForm.controls.lastName.value!);
+    // formData.append('username', this.createAccountForm.controls.username.value!);
+    // formData.append('email', this.createAccountForm.controls.email.value!);
+    // formData.append('role', this.createAccountForm.controls.role.value!);
+    // formData.append('password', this.createAccountForm.controls.password.value!);
+    // formData.append('department', this.createAccountForm.controls.department.value!);
+
+    
+    // formData.append('firstName', this.myForm?.get('firstName')?.value);
+    // formData.append('', this.myForm?.get('')?.value);
+    // formData.append('username', this.myForm?.get('username')?.value);
+    // formData.append('email', this.myForm?.get('email')?.value);
+    // formData.append('role', this.myForm?.get('role')?.value);
+    // formData.append('password', this.myForm?.get('password')?.value);
     // formData.append('department', this.myForm?.get('Department')?.value);
 
     
@@ -179,20 +161,20 @@ export class CreateAccountComponent implements OnInit {
             data: {
               username: data.data.username,
               email: data.data.email,
-              password: this.myForm?.get('password')?.value,
+              password: this.createAccountForm?.get('password')?.value,
             },
           });
         
           dialogRef.afterClosed().subscribe(() => {
             // Xử lý sau khi dialog đóng lại (nếu cần)
           });
-          this.myForm.reset();
+          this.createAccountForm.reset();
           
           this.router.navigate(['/admin/createaccount'])
         
           // this.router.navigate(['/admin'])
         } else if (data.status == 400) {
-          console.log("Email or Password or Username is incorrect! Please try again");
+          alert("Create Account Failed!")
         } 
         // else if (user.role == 4) {
         //   this.router.navigateByUrl('/staff');
@@ -209,7 +191,8 @@ export class CreateAccountComponent implements OnInit {
     },
 
       error => {
-        console.log("Email or Password or Username is incorrect! Please try again");
+        alert("Create Account Failed!")
+        
         console.log(error)
         // this.router.navigate(['/login']);
       }
@@ -218,18 +201,8 @@ export class CreateAccountComponent implements OnInit {
 
 
   }
-  account: NewAccounts = {
+ 
   
-    Firstname: null,
-    Lastname: null,
-    Email: null,
-    Password: null,
-    Role: null,
-    Departmant: null,
-
-
-  };
-
   reloadParent() {
     this.ngOnInit();
   }

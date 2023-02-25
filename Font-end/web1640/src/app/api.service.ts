@@ -40,15 +40,27 @@ export class ApiService {
     return this.http.post(api + 'testtestNewAccount', userInfo, {headers:headers, responseType: 'text'})//stringify de chuyen doi tu object sang json
   }
   createNewAccount(formData: FormData){  
-    
+    const data = {
+      firstName: formData.get('firstName'),
+      lastName: formData.get('lastName'),
+      username: formData.get('username'),
+      email: formData.get('email'),
+      password: formData.get('password'),
+      department: formData.get('department'),
+      role: formData.get('role'),
+    }
+   
+  
+
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('Accept', 'application/json');
-    console.log(JSON.stringify(formData));
-    const dataUser = JSON.stringify(formData)
+    
+    console.log(data);
     
     
-    return this.http.post(api + 'user/register', formData, {headers:headers, responseType: 'text'})//stringify de chuyen doi tu object sang json
+    
+    return this.http.post(api + 'user/register', data, {headers:headers, responseType: 'text'})//stringify de chuyen doi tu object sang json
   }
   changePassword(formData: Object){
     let newForm = new FormData();
