@@ -75,29 +75,29 @@ export class TopicAndDeadLineComponent {
     }
 
     console.log("hii");
-    this.api.CreateDeadline(this.deadline
-    ).subscribe(res => {
+    // this.api.CreateDeadline(this.deadline
+    // ).subscribe(res => {
 
-      var d = JSON.parse(res); //doi tu json sang object
-      const helper = new JwtHelperService();
-      console.log("okeee", d.deadline)
-      const decoedToken = helper.decodeToken(d.deadline);
-      console.log("okeee", d.deadline)
-      console.log("d", decoedToken);
+    //   var d = JSON.parse(res); //doi tu json sang object
+    //   const helper = new JwtHelperService();
+    //   console.log("okeee", d.deadline)
+    //   const decoedToken = helper.decodeToken(d.deadline);
+    //   console.log("okeee", d.deadline)
+    //   console.log("d", decoedToken);
 
-      alert("Tạo tài khoản thành công!");
+    //   alert("Tạo tài khoản thành công!");
 
-      // this.router.navigateByUrl('/students/profilestudent');
-      this.router.navigateByUrl('/admin');
-    },
+    //   // this.router.navigateByUrl('/students/profilestudent');
+    //   this.router.navigateByUrl('/admin');
+    // },
 
-      error => {
-        console.log("Error", error);
-        alert("Error");
-        this.router.navigateByUrl('/admin/TopicandDeadline');
-      }
+    //   error => {
+    //     console.log("Error", error);
+    //     alert("Error");
+    //     this.router.navigateByUrl('/admin/TopicandDeadline');
+    //   }
 
-    );
+    // );
 
 
   }
