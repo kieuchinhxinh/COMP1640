@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -32,6 +32,13 @@ export class TopicAndDeadLineComponent {
 
 
   };
+
+  deadlineForm = new FormGroup({
+    Topic: new FormControl('', [Validators.required]),
+    DLTopic: new FormControl('', [Validators.required]),
+    DLComment: new FormControl('', [Validators.required]),
+    Description: new FormControl('', [Validators.required]),
+  })
 
   constructor(
     private http: HttpClient,
