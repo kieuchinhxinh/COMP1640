@@ -38,7 +38,7 @@ export class LoginComponent {
       
       
       localStorage.setItem('accessToken', res.accessToken);
-      console.log(res.refreshToken);
+      console.log(res.accessToken);
       localStorage.setItem('refreshToken', res.refreshToken);
       console.log(res.message);
       if (res.status != 200) {
@@ -51,10 +51,10 @@ export class LoginComponent {
 
         console.log(user);
 
-        if (user.role == 2) {
+        if (user.role == 1) {
           this.router.navigateByUrl('/admin').then(() => {
             // Reload the current page
-            // window.location.reload();
+            window.location.reload();
           });
           // this.router.navigate(['/admin'])
         } else if (user.role == 3) {

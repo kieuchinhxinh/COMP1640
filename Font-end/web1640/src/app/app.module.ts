@@ -41,13 +41,13 @@ import { TopicListComponent } from './admin/topic-list/topic-list.component';
     TesttemComponent,
     ResetPasswordComponent,
     AccountManagerComponent,
+
     QamComponent,
     TopicmanagerComponent,
     SwitcherWrapperComponent
-   
   ],
   imports: [
-    BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule, FormsModule,
+    BrowserModule, HttpClientModule, FormsModule, 
     AppRoutingModule, ReactiveFormsModule, MatDialogModule
   ],
   providers: [
