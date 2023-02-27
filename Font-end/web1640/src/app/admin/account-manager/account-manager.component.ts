@@ -71,12 +71,11 @@ export class AccountManagerComponent implements OnInit {
   delete(id: string) {
     confirm("Are you sure you want to delete this account?")
     this.api.deleteUser(id).subscribe((data: any) => {
-      console.log(data)
-      var d = JSON.parse(data);
+      window.location.reload();
       
       alert("Delete Successful!")
 
-      window.location.reload();
+      
       
     },
     error => {
